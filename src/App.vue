@@ -8,6 +8,9 @@ export default {
     return {
       content: Data,
       popUp: false,
+      birthDay: "",
+      openedTab1: true,
+      openedTab2: false,
       titleHero: "Centered Hero",
       titleImage:
         "https://media.istockphoto.com/photos/koala-picture-id537179382?k=20&m=537179382&s=612x612&w=0&h=t_uwjhdeiH70yO-GOl7iLngz2gzBxdGkW0d1LBqxlJI=",
@@ -22,6 +25,18 @@ export default {
     closePopUp() {
       this.popUp = false;
     },
+    showDate(value) {
+      // alert(value);
+      this.birthDay = value;
+    },
+    openTab1() {
+      this.openedTab1 = true;
+      this.openedTab2 = false;
+    },
+    openTab2() {
+      this.openedTab2 = true;
+      this.openedTab1 = false;
+    },
   },
 };
 </script>
@@ -29,7 +44,7 @@ export default {
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-      <a class="navbar-brand" href="">Navbar</a>
+      <a class="navbar-brand" href="">Navbar {{ birthDay }}</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -56,7 +71,30 @@ export default {
       </div>
     </div>
   </nav>
-  <!-- 
+  <div>
+    <div class="tab" @click="openTab1">tab1</div>
+    <div class="tab" @click="openTab2">tab2</div>
+    <div class="isitab-1" v-bind:class="openedTab1 && 'show'">
+      orem Ipsum is simply dummy text of the printing and typesetting industry.
+      Lorem Ipsum has been the industry's standard dummy text ever since the
+      1500s, when an unknown printer took a galley of type and scrambled it to
+      make a type specimen book. It has survived not only five centuries, but
+      also the leap into electronic typesetting, remaining essentially
+      unchanged. It was popularised in the 1960s with the release of Letraset
+      sheets containing Lorem Ipsum passages, and more recently with desktop
+      publishing software like Aldus PageMaker including versions of Lorem
+      Ipsum.
+    </div>
+    <div class="isitab-2" v-bind:class="openedTab2 && 'show'">
+      There are many variations of passages of Lorem Ipsum available, but the
+      majority have suffered alteration in some form, by injected humour, or
+      randomised words which don't look even slightly believable. If you are
+      going to use a passage of Lorem Ipsum, you need to be sure there isn't
+      anything embarrassing hidden in the middle of text. All the Lorem Ipsum
+      generators on the Internet tend to repeat predefined chunks as necessary
+    </div>
+  </div>
+
   <div class="container">
     <div class="px-4 py-5 my-5 text-center">
       <img
@@ -87,7 +125,13 @@ export default {
         </div>
       </div>
     </div>
-  </div> -->
+  </div>
+  <div>
+    <div class="input-group">
+      <input type="date" id="birthday" name="birthday" v-model="value" />
+      <button @click="showDate(value)">add date</button>
+    </div>
+  </div>
   <div class="outsideContainer" v-bind:class="popUp && 'shown'">
     <div class="containerModal">
       <div>
@@ -149,6 +193,31 @@ header {
   right: 0;
   cursor: pointer;
   z-index: 10;
+}
+.tab {
+  display: inline-block;
+  margin-right: 20px;
+  cursor: pointer;
+}
+.tab:hover {
+  background-color: white;
+  color: hotpink;
+}
+.isitab-1 {
+  background-color: grey;
+  visibility: hidden;
+  height: 0;
+}
+.isitab-2 {
+  background-color: grey;
+  visibility: hidden;
+  height: 0;
+}
+.isitab-1.show {
+  visibility: visible;
+}
+.isitab-2.show {
+  visibility: visible;
 }
 .outsideContainer {
   position: absolute;
