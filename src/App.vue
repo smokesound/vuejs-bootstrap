@@ -72,6 +72,25 @@ export default {
     </div>
   </nav>
   <div>
+    <div class="scrollmenu">
+      <a href="#home">Home</a>
+      <a href="#news">News</a>
+      <a href="#contact">Contact</a>
+      <a href="#about">About</a>
+      <a href="#support">Support</a>
+      <a href="#blog">Blog</a>
+      <a href="#tools">Tools</a>
+      <a href="#base">Base</a>
+      <a href="#custom">Custom</a>
+      <a href="#more">More</a>
+      <a href="#logo">Logo</a>
+      <a href="#friends">Friends</a>
+      <a href="#partners">Partners</a>
+      <a href="#people">People</a>
+      <a href="#work">Work</a>
+    </div>
+  </div>
+  <div class="container">
     <div class="tab" @click="openTab1">tab1</div>
     <div class="tab" @click="openTab2">tab2</div>
     <div class="isitab-1" v-bind:class="openedTab1 && 'show'">
@@ -95,6 +114,11 @@ export default {
     </div>
   </div>
 
+  <div class="">
+    <div v-for="data in Data" style="display: inline-block; max-width: 100px">
+      <img :src="data.image" alt="..." style="width: 100%" />
+    </div>
+  </div>
   <div class="container">
     <div class="px-4 py-5 my-5 text-center">
       <img
@@ -173,6 +197,23 @@ export default {
 <style scoped>
 header {
   line-height: 1.5;
+}
+div.scrollmenu {
+  background-color: #333;
+  overflow: auto;
+  white-space: nowrap;
+}
+
+div.scrollmenu a {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+}
+
+div.scrollmenu a:hover {
+  background-color: #777;
 }
 .title-name {
   color: black;
